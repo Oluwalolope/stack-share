@@ -110,8 +110,8 @@ export default function DiscoverAside() {
           className="absolute top-7 ms-3 w-4 h-4 opacity-75 cursor-pointer"
         />
       </form>
-      
-      <hr className="my-3 lg:my-6 text-[#223949] lg:hidden" />  
+
+      <hr className="my-3 lg:my-6 text-[#223949] lg:hidden" />
 
       <div className="flex items-center justify-between p-5 pb-4 lg:pb-6">
         <h2 className="text-white font-medium lg:font-bold text-base lg:text-lg">
@@ -125,7 +125,6 @@ export default function DiscoverAside() {
           Reset All
         </button>
       </div>
-
 
       <div className="px-4">
         {/* Role */}

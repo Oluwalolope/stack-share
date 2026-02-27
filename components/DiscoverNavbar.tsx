@@ -12,7 +12,7 @@ import CloseIcon from "../assets/icons/close-icon.svg";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
-const NAV_LINKS = ["Discover", "Community", "Newsletter"];
+const NAV_LINKS = ["Discover", "Community", "Newsletter", "Explore"];
 
 const Navbar = ({
   menuOpen,
@@ -58,7 +58,13 @@ const Navbar = ({
               {NAV_LINKS.map((link) => (
                 <a
                   key={link}
-                  href={link === "Discover" ? "/discover" : "#"}
+                  href={
+                    link === "Discover"
+                      ? "/discover"
+                      : link === "Explore"
+                        ? "/explore"
+                        : "#"
+                  }
                   className={`text-sm transition-colors ${pathname === `/${link.toLowerCase()}` ? "font-bold text-white" : "text-muted"}`}
                 >
                   {link}
