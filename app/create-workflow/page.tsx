@@ -30,11 +30,12 @@ export default function CreateWorkflow() {
   const [currentStep, setCurrentStep] = useState(1);
   const [rotate, setRotate] = useState(false);
   const [steps, setSteps] = useState<number>(1);
+  const [preview, setPreview] = useState<boolean>(false);
 
   return (
     <div className={`h-screen bg-background ${spaceGrotesk.variable}`}>
       <Navbar />
-      <div className="flex gap-10 py-8 px-6 w-full lg:flex-row flex-col">
+      <div className="flex gap-10 py-8 px-16 w-full lg:flex-row flex-col">
         <div className="flex flex-col gap-8 w-full">
           {/* Intro text */}
           <div className="flex flex-col gap-2">
@@ -204,6 +205,9 @@ export default function CreateWorkflow() {
                       src={DeleteIcon}
                       className="absolute right-2 cursor-pointer top-2"
                       alt="Trash icon"
+                      onClick={() => {
+                        steps > 1 ? setSteps(steps - 1) : setSteps(1);
+                      }}
                     />
                     <div className="flex flex-col gap-4">
                       <input
@@ -245,107 +249,127 @@ export default function CreateWorkflow() {
                 ></textarea>
               </div>
             </div>
+
+            {/* Submit & Preview */}
+            <div className="flex gap-4 w-full pt-10">
+              <button
+                type="submit"
+                className="w-full bg-[#0D93F2] text-white py-4 font-bold text-base rounded-xl cursor-pointer hover:bg-transparent hover:border-2 hover:py-2 hover:border-[#0D93F2] hover:text-[#0D93F2]"
+              >
+                Publish Workflow
+              </button>
+              <button
+                type="button"
+                className="px-8 pt-3.5 pb-3.75 text-nowrap rounded-xl bg-[#182934] border border-[#315168] font-bold text-white text-base cursor-pointer hover:bg-[#0D93F2] hover:text-white hover:border-[#0D93F2] hover:py-2"
+                onClick={() => setPreview(!preview)}
+              >
+                {preview ? "Hide Preview" : "Preview Full Page"}
+              </button>
+            </div>
           </form>
         </div>
 
         {/* Preview */}
-        <div className="flex flex-col gap-6 min-w-1/4">
-          <div className="flex justify-between items-center">
-            <p className="font-medium text-sm text-[#90B2CB]">LIVE PREVIEW</p>
-            <p className="text-[10px] font-bold text-[#0D93F2] flex items-center gap-1">
-              <span className="w-2 h-2 bg-accent-green rounded-full"></span>
-              SYNCING
-            </p>
-          </div>
-
-          {/* Preview Card */}
-          <div>
-            <div className="relative rounded-t-2xl overflow-hidden">
-              <Image
-                src={PreviewBackground}
-                alt="preview background place-self-center"
-                className="w-full h-full"
-              />
-              <Image
-                src={TwinkleStarImage}
-                alt="twinkle star"
-                className="absolute top-1/3 left-1/2 -translate-x-1/2"
-              />
-            </div>
-            <div className="px-6 py-5.75 flex flex-col gap-4 bg-[#182934] rounded-b-2xl border border-[#315168] items-start">
-              <div className="flex flex-col gap-1.75">
-                <h6 className="text-[#0D93F2] text-[10px] bg-[#0D93F2]/10 px-2 py-px font-bold rounded-sm w-fit">
-                  {"product manager".toUpperCase()}
-                </h6>
-                <h4 className="text-xl font-bold">
-                  Automated Content Research
-                </h4>
-              </div>
-              <p className="text-sm text-[#90B2CB] max-w-87.5">
-                Describe the outcome of this workflow... use the 'Deep Analysis'
-                prompt in Claude to break down and analyze the content.
+        {preview && (
+          <div className="flex flex-col gap-6 min-w-1/4">
+            <div className="flex justify-between items-center">
+              <p className="font-medium text-sm text-[#90B2CB]">LIVE PREVIEW</p>
+              <p className="text-[10px] font-bold text-[#0D93F2] flex items-center gap-1">
+                <span className="w-2 h-2 bg-accent-green rounded-full"></span>
+                SYNCING
               </p>
+            </div>
 
-              {/* Tools */}
-              <div className="py-2 px-0 flex items-center gap-2 justify-center">
-                {Array.from({ length: 3 }).map((_, index) => (
-                  <div key={index} className="p-2 bg-[#1E293B] rounded-lg">
-                    <Image src={InsightIcon} alt="Tools Icons" />
-                  </div>
-                ))}
-
-                <p className="text-sm text-[#90B2CB]">+2 more</p>
+            {/* Preview Card */}
+            <div>
+              <div className="relative rounded-t-2xl overflow-hidden">
+                <Image
+                  src={PreviewBackground}
+                  alt="preview background place-self-center"
+                  className="w-full h-full"
+                />
+                <Image
+                  src={TwinkleStarImage}
+                  alt="twinkle star"
+                  className="absolute top-1/3 left-1/2 -translate-x-1/2"
+                />
               </div>
-
-              {/* Process Preview */}
-              <div className=" pt-4 flex flex-col gap-3 w-full">
-                <div className="flex justify-between w-full">
-                  <p className="font-medium text-xs text-[#90B2CB]">
-                    PROCESS PREVIEW
-                  </p>
-                  <p className="text-xs text-[#90B2CB]">3 Steps</p>
+              <div className="px-6 py-5.75 flex flex-col gap-4 bg-[#182934] rounded-b-2xl border border-[#315168] items-start">
+                <div className="flex flex-col gap-1.75">
+                  <h6 className="text-[#0D93F2] text-[10px] bg-[#0D93F2]/10 px-2 py-px font-bold rounded-sm w-fit">
+                    {"product manager".toUpperCase()}
+                  </h6>
+                  <h4 className="text-xl font-bold">
+                    Automated Content Research
+                  </h4>
                 </div>
+                <p className="text-sm text-[#90B2CB] max-w-87.5">
+                  Describe the outcome of this workflow... use the 'Deep
+                  Analysis' prompt in Claude to break down and analyze the
+                  content.
+                </p>
 
-                <div className="flex flex-col gap-3">
+                {/* Tools */}
+                <div className="py-2 px-0 flex items-center gap-2 justify-center">
                   {Array.from({ length: 3 }).map((_, index) => (
-                    <div key={index} className="flex gap-3 items-center">
-                      <div className="w-6 h-6 place-content-center bg-[#0D93F2]/10 rounded-full px-2">
-                        <p className="font-bold text-xs text-[#0D93F2]">
-                          {index + 1}
-                        </p>
-                      </div>
-                      <div className="w-full py-1.5 bg-[#315168] rounded-lg h-fit"></div>
+                    <div key={index} className="p-2 bg-[#1E293B] rounded-lg">
+                      <Image src={InsightIcon} alt="Tools Icons" />
                     </div>
                   ))}
+
+                  <p className="text-sm text-[#90B2CB]">+2 more</p>
+                </div>
+
+                {/* Process Preview */}
+                <div className=" pt-4 flex flex-col gap-3 w-full">
+                  <div className="flex justify-between w-full">
+                    <p className="font-medium text-xs text-[#90B2CB]">
+                      PROCESS PREVIEW
+                    </p>
+                    <p className="text-xs text-[#90B2CB]">3 Steps</p>
+                  </div>
+
+                  <div className="flex flex-col gap-3">
+                    {Array.from({ length: 3 }).map((_, index) => (
+                      <div key={index} className="flex gap-3 items-center">
+                        <div className="w-6 h-6 place-content-center bg-[#0D93F2]/10 rounded-full px-2">
+                          <p className="font-bold text-xs text-[#0D93F2]">
+                            {index + 1}
+                          </p>
+                        </div>
+                        <div className="w-full py-1.5 bg-[#315168] rounded-lg h-fit"></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Insight Preview */}
+                <div className="bg-[#101B22]/50 p-3 flex flex-col gap-1">
+                  <p className="font-medium text-xs text-[#0D93F2]">
+                    INSIGHT PREVIEW
+                  </p>
+                  <p className="text-sm text-[#90B2CB]">
+                    "I stopped using manual Google Sheets tracking for initial
+                    drafts..."
+                  </p>
                 </div>
               </div>
+            </div>
 
-              {/* Insight Preview */}
-              <div className="bg-[#101B22]/50 p-3 flex flex-col gap-1">
-                <p className="font-medium text-xs text-[#0D93F2]">
-                  INSIGHT PREVIEW
-                </p>
+            {/* QUick Tip */}
+            <div className="p-4 flex justify-start items-start gap-3 bg-[#182934] rounded-xl border border-[#315168]">
+              <Image src={TIpIcon} alt="info icon" />
+
+              <div className="flex flex-col gap-1">
+                <p className="font-bold text-sm">Quick Tip</p>
                 <p className="text-sm text-[#90B2CB]">
-                  "I stopped using manual Google Sheets tracking for initial
-                  drafts..."
+                  Workflows with clear tool connections get 3x more views from
+                  the community.
                 </p>
               </div>
             </div>
           </div>
-
-          {/* QUick Tip */}
-          <div className="p-4 flex justify-start items-start gap-3 bg-[#182934] rounded-xl border border-[#315168]">
-            <Image src={TIpIcon} alt="info icon" />
-
-            <div className="flex flex-col gap-1">
-              <p className="font-bold text-sm">Quick Tip</p>
-              <p className="text-sm text-[#90B2CB]">
-                Workflows with clear tool connections get 3x more views from the
-                community.
-              </p>
-            </div>
-          </div>
-        </div>
+        )}
       </div>
 
       <Footer />
