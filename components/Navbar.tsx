@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { fadeInDown } from "@/lib/animations";
 import Image from "next/image";
 import Logo from "../assets/icons/logo.svg";
+import Link from "next/link";
 
 const NAV_LINKS = ["Discover", "Community", "Newsletter", "Explore"];
 
@@ -57,13 +58,15 @@ const Navbar = () => {
             >
               Login
             </a>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="rounded-lg bg-primar px-4 py-2 bg-primary text-sm font-semibold text-white transition-colors hover:bg-primary-dark cursor-pointer"
-            >
-              Submit Stack
-            </motion.button>
+            <Link href="/create-workflow">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="rounded-lg bg-primar px-4 py-2 bg-primary text-sm font-semibold text-white transition-colors hover:bg-primary-dark cursor-pointer"
+              >
+                Submit Stack
+              </motion.button>
+            </Link>
           </div>
         </div>
       </motion.nav>

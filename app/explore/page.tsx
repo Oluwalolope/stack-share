@@ -19,8 +19,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 interface Tools {
-  imageUrl: string,
-  name: string
+  imageUrl: string;
+  name: string;
 }
 
 interface Workflow {
@@ -52,7 +52,12 @@ const workflows: Workflow[] = [
       "A seamless bridge to convert long-form YouTube transcripts into 5 unique LinkedIn posts using custom GPT prompts and scheduled via Typefully.",
     likes: 1525000,
     views: 1200,
-    tools: [{imageUrl: RobloxIcon, name: "ChatGPT"}, {imageUrl: RobloxIcon, name: "Framer"}, {imageUrl: RobloxIcon, name: "LinkedIn"}, {imageUrl: RobloxIcon, name: "Bolt"}],
+    tools: [
+      { imageUrl: RobloxIcon, name: "ChatGPT" },
+      { imageUrl: RobloxIcon, name: "Framer" },
+      { imageUrl: RobloxIcon, name: "LinkedIn" },
+      { imageUrl: RobloxIcon, name: "Bolt" },
+    ],
     createdAt: "2h",
   },
   {
@@ -63,7 +68,12 @@ const workflows: Workflow[] = [
       "A seamless bridge to convert long-form YouTube transcripts into 5 unique LinkedIn posts using custom GPT prompts and scheduled via Typefully.",
     likes: 1525000,
     views: 1200,
-    tools:[{imageUrl: RobloxIcon, name: "ChatGPT"}, {imageUrl: RobloxIcon, name: "Framer"}, {imageUrl: RobloxIcon, name: "LinkedIn"}, {imageUrl: RobloxIcon, name: "Bolt"}],
+    tools: [
+      { imageUrl: RobloxIcon, name: "ChatGPT" },
+      { imageUrl: RobloxIcon, name: "Framer" },
+      { imageUrl: RobloxIcon, name: "LinkedIn" },
+      { imageUrl: RobloxIcon, name: "Bolt" },
+    ],
     createdAt: "2h",
   },
   {
@@ -74,7 +84,12 @@ const workflows: Workflow[] = [
       "A seamless bridge to convert long-form YouTube transcripts into 5 unique LinkedIn posts using custom GPT prompts and scheduled via Typefully.",
     likes: 1525000,
     views: 1200,
-    tools:[{imageUrl: RobloxIcon, name: "ChatGPT"}, {imageUrl: RobloxIcon, name: "Framer"}, {imageUrl: RobloxIcon, name: "LinkedIn"}, {imageUrl: RobloxIcon, name: "Bolt"}],
+    tools: [
+      { imageUrl: RobloxIcon, name: "ChatGPT" },
+      { imageUrl: RobloxIcon, name: "Framer" },
+      { imageUrl: RobloxIcon, name: "LinkedIn" },
+      { imageUrl: RobloxIcon, name: "Bolt" },
+    ],
     createdAt: "2h",
   },
   {
@@ -85,7 +100,12 @@ const workflows: Workflow[] = [
       "A seamless bridge to convert long-form YouTube transcripts into 5 unique LinkedIn posts using custom GPT prompts and scheduled via Typefully.",
     likes: 1525000,
     views: 1200,
-    tools:[{imageUrl: RobloxIcon, name: "ChatGPT"}, {imageUrl: RobloxIcon, name: "Framer"}, {imageUrl: RobloxIcon, name: "LinkedIn"}, {imageUrl: RobloxIcon, name: "Bolt"}],
+    tools: [
+      { imageUrl: RobloxIcon, name: "ChatGPT" },
+      { imageUrl: RobloxIcon, name: "Framer" },
+      { imageUrl: RobloxIcon, name: "LinkedIn" },
+      { imageUrl: RobloxIcon, name: "Bolt" },
+    ],
     createdAt: "2h",
   },
   {
@@ -96,7 +116,12 @@ const workflows: Workflow[] = [
       "A seamless bridge to convert long-form YouTube transcripts into 5 unique LinkedIn posts using custom GPT prompts and scheduled via Typefully.",
     likes: 1525000,
     views: 1200,
-    tools:[{imageUrl: RobloxIcon, name: "ChatGPT"}, {imageUrl: RobloxIcon, name: "Framer"}, {imageUrl: RobloxIcon, name: "LinkedIn"}, {imageUrl: RobloxIcon, name: "Bolt"}],
+    tools: [
+      { imageUrl: RobloxIcon, name: "ChatGPT" },
+      { imageUrl: RobloxIcon, name: "Framer" },
+      { imageUrl: RobloxIcon, name: "LinkedIn" },
+      { imageUrl: RobloxIcon, name: "Bolt" },
+    ],
     createdAt: "2h",
   },
   {
@@ -107,7 +132,13 @@ const workflows: Workflow[] = [
       "A seamless bridge to convert long-form YouTube transcripts into 5 unique LinkedIn posts using custom GPT prompts and scheduled via Typefully.",
     likes: 1525000,
     views: 1200,
-    tools:[{imageUrl: RobloxIcon, name: "ChatGPT"}, {imageUrl: RobloxIcon, name: "Framer"}, {imageUrl: RobloxIcon, name: "LinkedIn"}, {imageUrl: RobloxIcon, name: "Bolt"},  {imageUrl: RobloxIcon, name: "Bolt"}],
+    tools: [
+      { imageUrl: RobloxIcon, name: "ChatGPT" },
+      { imageUrl: RobloxIcon, name: "Framer" },
+      { imageUrl: RobloxIcon, name: "LinkedIn" },
+      { imageUrl: RobloxIcon, name: "Bolt" },
+      { imageUrl: RobloxIcon, name: "Bolt" },
+    ],
     createdAt: "2h",
   },
 ];
@@ -216,7 +247,11 @@ export default function Explore() {
                       </div>
                     ))}
                   </div>
-                  <p>{workflow.tools.length === 4 && workflow.tools.length >3 ? `+${workflow.tools[3].name}` : `+${workflow.tools.length - 3} more tools`}</p>
+                  <p>
+                    {workflow.tools.length === 4 && workflow.tools.length > 3
+                      ? `+${workflow.tools[3].name}`
+                      : `+${workflow.tools.length - 3} more tools`}
+                  </p>
                 </div>
               </div>
             ))}
